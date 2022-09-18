@@ -32,10 +32,10 @@ chewieController!.dispose();
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
         videoList = videoModelFromJson(response.body).data;
-       videoPlayerController=VideoPlayerController.network(videoList[0].postUrl);
-       await Future.wait([videoPlayerController.initialize()]);
-       chewieController=ChewieController(videoPlayerController: videoPlayerController,autoPlay: true,autoInitialize: true);
-        isLoading.value = false;
+      //  videoPlayerController=VideoPlayerController.network(videoList[0].postUrl);
+      //  await Future.wait([videoPlayerController.initialize()]);
+      //  chewieController=ChewieController(videoPlayerController: videoPlayerController,autoPlay: true,autoInitialize: true);
+      //   isLoading.value = false;
             update();
       }
     } catch (e) {
@@ -43,11 +43,11 @@ chewieController!.dispose();
     }
   }
 
-playvideo(String url)async{
-  videoPlayerController=VideoPlayerController.network(url);
-       await Future.wait([videoPlayerController.initialize()]);
-       chewieController=ChewieController(videoPlayerController: videoPlayerController,autoPlay: true,autoInitialize: true);
-       update();
-       return videoPlayerController;
-}  
+// playvideo(String url)async{
+//   videoPlayerController=VideoPlayerController.network(url);
+//        await Future.wait([videoPlayerController.initialize()]);
+//        chewieController=ChewieController(videoPlayerController: videoPlayerController,autoPlay: true,autoInitialize: true);
+//        update();
+//        return videoPlayerController;
+// }  
 }

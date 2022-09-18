@@ -3,6 +3,7 @@ import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:machinetestlive/controller/video_controller.dart';
+import 'package:machinetestlive/view/videocard.dart';
 
 class VideoList extends StatefulWidget {
   const VideoList({Key? key}) : super(key: key);
@@ -15,7 +16,8 @@ class _VideoListState extends State<VideoList> {
   // VideoController? controller;
   // @override
   // void initState() {
-  //   controller = Get.find<VideoController>()..getData();
+  //   controller = Get.find<VideoController>()..getData()
+
   //   super.initState();
   // }
 VideoController controller=Get.put(VideoController());
@@ -26,32 +28,16 @@ VideoController controller=Get.put(VideoController());
     return Scaffold(
       body: SafeArea(
           child: 
-           Column(
-        children: [
-          GetBuilder<VideoController>(
-              init: VideoController(),
-              builder: (controller) {
-                return Expanded(
-                  child: Center(
-                    child: controller.chewieController != null &&
-                            controller.chewieController!.videoPlayerController
-                                .value.isInitialized
-                        ? Chewie(controller: controller.chewieController!)
-                        : Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children:const [
-                              CircularProgressIndicator(),
-                              SizedBox(
-                                height: 30,
-                              ),
-                              Text('Loading')
-                            ],
-                          ),
-                  ),
-                );
-              })
-        ],
-      )),
+           GetBuilder<VideoController>(
+               init: VideoController(),
+               builder: (controller) {
+                 return ListView.builder(
+                   itemCount: controller.videoList.length,
+                   itemBuilder: (BuildContext context, int index) {
+                     return  VideoCard(video: controller.videoList[index]);
+                   },
+                 );
+               })),
     );
   }
 }
